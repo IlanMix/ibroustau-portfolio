@@ -10,11 +10,14 @@ import { stages } from '../data/stages.js';
       <div>
         <h2>{s.entreprise}</h2>
         <p class="entree-lieu">{s.lieu}</p>
-        <p>{s.mission}</p>
+        <p><strong>Mission.</strong> {s.mission}</p>
         {s.realisations?.length > 0 && (
-          <ul class="liste-simple">
-            {s.realisations.map((r) => <li>{r}</li>)}
-          </ul>
+          <div>
+            <h3>Réalisations principales</h3>
+            <ul class="liste-simple">
+              {s.realisations.map((r) => <li>{r}</li>)}
+            </ul>
+          </div>
         )}
         <ul class="etiquettes">
           {s.technologies.map((t) => <li>{t}</li>)}
