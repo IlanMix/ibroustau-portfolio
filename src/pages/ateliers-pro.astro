@@ -9,6 +9,14 @@ import { ateliers } from '../data/ateliers.js';
       <p class="entree-date">{a.date}</p>
       <div>
         <h2>{a.titre}</h2>
+        {a.image && (
+          <img
+            class="atelier-image"
+            src={`${import.meta.env.BASE_URL}${a.image}`}
+            alt={a.imageAlt || `Illustration du projet ${a.titre}`}
+            loading="lazy"
+          />
+        )}
         <p><strong>Contexte.</strong> {a.contexte}</p>
         <p><strong>Réalisation.</strong> {a.realisation}</p>
         <ul class="etiquettes">
