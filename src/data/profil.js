@@ -1,10 +1,10 @@
 export const profil = {
-  nom: 'Ilan',
+  nom: 'Ilan Broustau',
   titre: 'Étudiant en BTS SIO option SLAM',
   accroche:
-    'Je développe des applications web et logicielles. Ce portfolio rassemble mon parcours, mes stages, mes réalisations et ma veille technologique.',
+    'Je développe des applications web et logicielles. Voici mon portfolio qui rassemble mon parcours, mes stages, mes réalisations et ma veille technologique.',
   etablissement: 'Lycée Saint-John Perse, Pau',
-  email: 'ton.email@exemple.fr',
-  github: 'https://github.com/TON-PSEUDO',
+  email: 'ibroustau.pro@gmail.com',
+  github: '',
   linkedin: '',
 };

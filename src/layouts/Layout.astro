@@ -46,11 +46,9 @@ const titreComplet = titre ? `${titre} – ${profil.nom}` : `${profil.nom} – P
     </main>
 
     <footer class="pied">
-      <p>{profil.nom} · BTS SIO option SLAM · {profil.etablissement}</p>
+      <p>{profil.nom} · Étudiant en informatique · {profil.etablissement}</p>
       <p>
-        <a href={`mailto:${profil.email}`}>{profil.email}</a>
-        {profil.github && <a href={profil.github}>GitHub</a>}
-        {profil.linkedin && <a href={profil.linkedin}>LinkedIn</a>}
+        <a href={`mailto:${profil.email}`}>{profil.email}
       </p>
     </footer>
   </body>
