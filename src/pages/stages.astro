@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { stages } from '../data/stages.js';
+---
+<Layout titre="Stages">
+  <h1 class="page-titre">Stages</h1>
+  {stages.map((s) => (
+    <article class="entree">
+      <p class="entree-date">{s.periode}</p>
+      <div>
+        <h2>{s.entreprise}</h2>
+        <p class="entree-lieu">{s.lieu}</p>
+        <p>{s.mission}</p>
+        {s.realisations?.length > 0 && (
+          <ul class="liste-simple">
+            {s.realisations.map((r) => <li>{r}</li>)}
+          </ul>
+        )}
+        <ul class="etiquettes">
+          {s.technologies.map((t) => <li>{t}</li>)}
+        </ul>
+        {s.bilan && <p><strong>Bilan.</strong> {s.bilan}</p>}
+      </div>
+    </article>
+  ))}
+</Layout>

@@ -1,0 +1,57 @@
+---
+import '../styles/global.css';
+import { profil } from '../data/profil.js';
+
+const { titre, description = profil.accroche } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const chemin = Astro.url.pathname.replace(/\/$/, '');
+
+const liens = [
+  { href: '/cv/', label: 'CV' },
+  { href: '/stages/', label: 'Stages' },
+  { href: '/ateliers-pro/', label: 'Ateliers Pro' },
+  { href: '/veille/', label: 'Veille' },
+  { href: '/competences/', label: 'Compétences' },
+];
+const titreComplet = titre ? `${titre} – ${profil.nom}` : `${profil.nom} – Portfolio BTS SIO SLAM`;
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titreComplet}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <a class="skip" href="#contenu">Aller au contenu</a>
+    <header class="entete">
+      <a class="marque" href={`${base}/`}>{profil.nom}</a>
+      <nav aria-label="Navigation principale">
+        <ul>
+          {liens.map((l) => (
+            <li>
+              <a href={`${base}${l.href}`} aria-current={chemin === `${base}${l.href}`.replace(/\/$/, '') ? 'page' : undefined}>{l.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </header>
+
+    <main id="contenu">
+      <slot />
+    </main>
+
+    <footer class="pied">
+      <p>{profil.nom} · BTS SIO option SLAM · {profil.etablissement}</p>
+      <p>
+        <a href={`mailto:${profil.email}`}>{profil.email}</a>
+        {profil.github && <a href={profil.github}>GitHub</a>}
+        {profil.linkedin && <a href={profil.linkedin}>LinkedIn</a>}
+      </p>
+    </footer>
+  </body>
+</html>

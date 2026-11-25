@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { ateliers } from '../data/ateliers.js';
+---
+<Layout titre="Ateliers Pro">
+  <h1 class="page-titre">Ateliers Pro</h1>
+  {ateliers.map((a) => (
+    <article class="entree">
+      <p class="entree-date">{a.date}</p>
+      <div>
+        <h2>{a.titre}</h2>
+        <p><strong>Contexte.</strong> {a.contexte}</p>
+        <p><strong>Réalisation.</strong> {a.realisation}</p>
+        <ul class="etiquettes">
+          {a.technologies.map((t) => <li>{t}</li>)}
+        </ul>
+        {a.competences?.length > 0 && (
+          <p class="entree-lieu">Compétences : {a.competences.join(' ; ')}</p>
+        )}
+        {a.lien && <p><a href={a.lien}>Voir le projet</a></p>}
+      </div>
+    </article>
+  ))}
+</Layout>

@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { blocs } from '../data/competences.js';
+---
+<Layout titre="Compétences">
+  <h1 class="page-titre">Compétences</h1>
+  <p class="chapeau">Les compétences du référentiel BTS SIO option SLAM et les réalisations qui les démontrent.</p>
+
+  {blocs.map((b) => (
+    <section>
+      <h2>{b.nom}</h2>
+      <div class="defilement">
+        <table>
+          <thead>
+            <tr><th scope="col">Compétence</th><th scope="col">Preuves</th></tr>
+          </thead>
+          <tbody>
+            {b.competences.map((c) => (
+              <tr>
+                <th scope="row">{c.intitule}</th>
+                <td>{c.preuves.length ? c.preuves.join(', ') : '–'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  ))}
+</Layout>

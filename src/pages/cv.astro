@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { formations, experiences, langues, outils } from '../data/cv.js';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Layout titre="CV">
+  <h1 class="page-titre">CV</h1>
+  <p class="chapeau">
+    <a class="bouton" href={`${base}/cv-ilan.pdf`} download>Télécharger mon CV (PDF)</a>
+  </p>
+
+  <section>
+    <h2>Formation</h2>
+    {formations.map((f) => (
+      <article class="entree">
+        <p class="entree-date">{f.periode}</p>
+        <div>
+          <h3>{f.intitule}</h3>
+          <p class="entree-lieu">{f.lieu}</p>
+          {f.detail && <p>{f.detail}</p>}
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <section>
+    <h2>Expériences</h2>
+    {experiences.map((e) => (
+      <article class="entree">
+        <p class="entree-date">{e.periode}</p>
+        <div>
+          <h3>{e.intitule}</h3>
+          <p class="entree-lieu">{e.lieu}</p>
+          {e.detail && <p>{e.detail}</p>}
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <section>
+    <h2>Langues</h2>
+    <ul class="liste-simple">
+      {langues.map((l) => <li><strong>{l.nom}</strong> : {l.niveau}</li>)}
+    </ul>
+  </section>
+
+  <section>
+    <h2>Outils</h2>
+    <ul class="etiquettes">
+      {outils.map((o) => <li>{o}</li>)}
+    </ul>
+  </section>
+</Layout>

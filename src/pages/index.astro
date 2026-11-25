@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { profil } from '../data/profil.js';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const rubriques = [
+  { href: '/cv/', titre: 'CV', texte: 'Formation, expériences et outils.' },
+  { href: '/stages/', titre: 'Stages', texte: 'Missions réalisées en entreprise.' },
+  { href: '/ateliers-pro/', titre: 'Ateliers Pro', texte: 'Projets et TP développés pendant la formation.' },
+  { href: '/veille/', titre: 'Veille', texte: 'Ma veille technologique et mes sources.' },
+  { href: '/competences/', titre: 'Compétences', texte: 'Le référentiel du BTS et mes preuves.' },
+];
+---
+<Layout>
+  <section class="hero">
+    <h1>{profil.nom}</h1>
+    <p class="hero-titre">{profil.titre}</p>
+    <p class="hero-texte">{profil.accroche}</p>
+  </section>
+
+  <section class="rubriques" aria-label="Rubriques du portfolio">
+    <ul>
+      {rubriques.map((r) => (
+        <li>
+          <a href={`${base}${r.href}`}>
+            <span class="rubrique-titre">{r.titre}</span>
+            <span class="rubrique-texte">{r.texte}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Layout>

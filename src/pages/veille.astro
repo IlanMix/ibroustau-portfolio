@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { veille } from '../data/veille.js';
+
+const formater = (iso) =>
+  new Date(iso).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<Layout titre="Veille technologique">
+  <h1 class="page-titre">Veille technologique</h1>
+
+  <section>
+    <h2>{veille.theme}</h2>
+    <p>{veille.problematique}</p>
+  </section>
+
+  <section>
+    <h2>Outils de veille</h2>
+    <ul class="etiquettes">
+      {veille.outils.map((o) => <li>{o}</li>)}
+    </ul>
+  </section>
+
+  <section>
+    <h2>Sources</h2>
+    <ul class="liste-simple">
+      {veille.sources.map((s) => (
+        <li><a href={s.url}>{s.nom}</a> <span class="entree-lieu">({s.type})</span></li>
+      ))}
+    </ul>
+  </section>
+
+  <section>
+    <h2>Derniers articles</h2>
+    {veille.articles.map((a) => (
+      <article class="entree">
+        <p class="entree-date"><time datetime={a.date}>{formater(a.date)}</time></p>
+        <div>
+          <h3><a href={a.url}>{a.titre}</a></h3>
+          <p class="entree-lieu">{a.source}</p>
+          <p>{a.resume}</p>
+        </div>
+      </article>
+    ))}
+  </section>
+</Layout>
